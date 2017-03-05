@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.ferraro.myjiujitsujournal.activities.UsernameSetupActivity">
+
+    <TextView android:text="@string/username_setup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/name_setup_textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:gravity="center"
+        android:ems="10"
+        android:id="@+id/fill_in_name_field"
+        android:layout_below="@+id/name_setup_textView"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:onClick="finishUserSetup"
+        android:id="@+id/username_finish_setup_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Your name must be at least 2 charaters"
+        android:id="@+id/name_setup_warning_text"
+        android:layout_below="@+id/fill_in_name_field"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

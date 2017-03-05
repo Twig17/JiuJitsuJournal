@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Jiu-Jitsu Journal</string>
+
+    <string name="hello_world">s Jui Jitsu \n Journal</string>
+    <string name="username_setup">Whose journal is this?</string>
+    <string name="pref_previously_started">previously_started</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="user_file">user_file</string>
+
+    <string name="title_activity_username_setup">UsernameSetupActivity</string>
+</resources>
