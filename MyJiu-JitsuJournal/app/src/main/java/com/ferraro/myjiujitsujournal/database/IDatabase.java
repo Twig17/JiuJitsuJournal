@@ -1,5 +1,6 @@
 package com.ferraro.myjiujitsujournal.database;
 
+import com.ferraro.myjiujitsujournal.mjjj.Journal;
 import com.ferraro.myjiujitsujournal.mjjj.User;
 
 /**
@@ -8,5 +9,8 @@ import com.ferraro.myjiujitsujournal.mjjj.User;
 public interface IDatabase {
 
     public User getUser();
-
+    public void saveUser(User user);
+    public Journal getMyJournal();
+    public Journal getDefaultJournal();
+    public void saveMyJournal(Journal journal);
 }
