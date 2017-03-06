@@ -10,13 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ferraro.myjiujitsujournal.activities.MainActivity;
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
 import com.ferraro.myjiujitsujournal.mjjj.R;
 import com.ferraro.myjiujitsujournal.mjjj.User;
-
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 public class UsernameSetupActivity extends ActionBarActivity {
 
@@ -60,15 +56,6 @@ public class UsernameSetupActivity extends ActionBarActivity {
         if( editTextLayout.getText().length() > 1 ) {
             User user = new User(editTextLayout.getText().toString());
             engine.setThisUser(user);
-            try {
-                FileOutputStream fos = context.openFileOutput(getString(R.string.user_file), Context.MODE_PRIVATE);
-                ObjectOutputStream os = new ObjectOutputStream(fos);
-                os.writeObject(user);
-                os.close();
-                fos.close();
-            } catch(Exception e) {
-                System.out.println(e);
-            }
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

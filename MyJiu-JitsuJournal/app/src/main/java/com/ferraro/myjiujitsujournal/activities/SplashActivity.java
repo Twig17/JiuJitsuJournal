@@ -7,11 +7,8 @@ import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
-import com.ferraro.myjiujitsujournal.mjjj.R;
 import com.ferraro.myjiujitsujournal.mjjj.User;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,12 +30,10 @@ public class SplashActivity extends AppCompatActivity {
 
         try {
             //try to load the user file. If not there then it is first time using the app
-            FileInputStream fis = context.openFileInput(getString(R.string.user_file));
-            ObjectInputStream is = new ObjectInputStream(fis);
-            user = (User) is.readObject();
-            engine.setThisUser(user);
-            is.close();
-            fis.close();
+            user = engine.getDatabase().getUser();
+            if(user == null) {
+                throw new Exception("No user found");
+            }
         }
         catch(Exception e) {
             previouslyStarted = false;
