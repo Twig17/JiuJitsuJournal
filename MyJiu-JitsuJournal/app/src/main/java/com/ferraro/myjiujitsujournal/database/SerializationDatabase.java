@@ -3,7 +3,9 @@ package com.ferraro.myjiujitsujournal.database;
 import android.app.Activity;
 import android.content.Context;
 
+import com.ferraro.myjiujitsujournal.Constants.MyConstants;
 import com.ferraro.myjiujitsujournal.mjjj.Journal;
+import com.ferraro.myjiujitsujournal.mjjj.MyApp;
 import com.ferraro.myjiujitsujournal.mjjj.R;
 import com.ferraro.myjiujitsujournal.mjjj.User;
 
@@ -19,8 +21,8 @@ public class SerializationDatabase extends Activity implements IDatabase{
     @Override
     public User getUser() {
         try{
-            Context context = getApplicationContext();
-            FileInputStream fis = context.openFileInput(getString(R.string.user_file));
+            Context context = MyApp.getContext();
+            FileInputStream fis = context.openFileInput(MyConstants.user_file);
             ObjectInputStream is = new ObjectInputStream(fis);
             User user = (User) is.readObject();
             return user;
@@ -35,8 +37,8 @@ public class SerializationDatabase extends Activity implements IDatabase{
     @Override
     public void saveUser(User user) {
         try {
-            Context context = getApplicationContext();
-            FileOutputStream fos = context.openFileOutput(getString(R.string.user_file), Context.MODE_PRIVATE);
+            Context context = MyApp.getContext();
+            FileOutputStream fos = context.openFileOutput(MyConstants.user_file, Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(user);
             os.close();
@@ -49,8 +51,8 @@ public class SerializationDatabase extends Activity implements IDatabase{
     @Override
     public Journal getMyJournal() {
         try{
-            Context context = getApplicationContext();
-            FileInputStream fis = context.openFileInput(getString(R.string.journal_file));
+            Context context = MyApp.getContext();
+            FileInputStream fis = context.openFileInput(MyConstants.journal_file);
             ObjectInputStream is = new ObjectInputStream(fis);
             Journal journal = (Journal) is.readObject();
             return journal;
@@ -65,7 +67,7 @@ public class SerializationDatabase extends Activity implements IDatabase{
     @Override
     public Journal getDefaultJournal() {
         try{
-            Context context = getApplicationContext();
+            Context context = MyApp.getContext();
             FileInputStream fis = context.openFileInput(getString(R.string.defaultJournal_file));
             ObjectInputStream is = new ObjectInputStream(fis);
             Journal journal = (Journal) is.readObject();
@@ -81,8 +83,8 @@ public class SerializationDatabase extends Activity implements IDatabase{
     @Override
     public void saveMyJournal(Journal journal) {
         try {
-            Context context = getApplicationContext();
-            FileOutputStream fos = context.openFileOutput(getString(R.string.journal_file), Context.MODE_PRIVATE);
+            Context context = MyApp.getContext();
+            FileOutputStream fos = context.openFileOutput(MyConstants.journal_file, Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
             os.writeObject(journal);
             os.close();

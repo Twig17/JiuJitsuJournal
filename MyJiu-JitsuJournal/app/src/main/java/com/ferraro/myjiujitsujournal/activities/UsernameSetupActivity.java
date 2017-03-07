@@ -1,6 +1,5 @@
 package com.ferraro.myjiujitsujournal.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -50,7 +49,6 @@ public class UsernameSetupActivity extends ActionBarActivity {
     public void finishUserSetup(View view){
         TextView editTextLayout =(TextView)findViewById(R.id.fill_in_name_field);
         TextView warningTextLayout =(TextView)findViewById(R.id.name_setup_warning_text);
-        Context context = getApplicationContext();
 
         //check value of name is longer than 1 char, otherwise display error
         if( editTextLayout.getText().length() > 1 ) {

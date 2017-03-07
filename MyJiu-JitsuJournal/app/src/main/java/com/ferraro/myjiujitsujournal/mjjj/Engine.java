@@ -33,8 +33,8 @@ public class Engine {
     }
 
     public void setThisUser(User thisUser) {
-        database.saveUser(thisUser);
         this.thisUser = thisUser;
+        database.saveUser(thisUser);
     }
 
     public IDatabase getDatabase() {

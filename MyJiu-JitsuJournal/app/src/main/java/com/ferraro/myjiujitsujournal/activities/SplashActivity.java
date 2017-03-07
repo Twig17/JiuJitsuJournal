@@ -40,7 +40,6 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         if(!previouslyStarted) {
-            engine.setThisUser(user);
             Intent setupIntent = new Intent(this, UsernameSetupActivity.class);
             startActivity(setupIntent);
             finish();
