@@ -11,4 +11,5 @@
     <string name="defaultJournal_file">defaultJournal_file</string>
 
     <string name="title_activity_username_setup">UsernameSetupActivity</string>
+    <string name="title_activity_journal">JournalActivity</string>
 </resources>

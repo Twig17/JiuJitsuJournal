@@ -3,24 +3,49 @@ package com.ferraro.myjiujitsujournal.mjjj;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Nick on 3/5/2017.
  */
 public class Journal implements Serializable {
     private String name;
-    private List<Moves> moves;
+    private String id;
+    private List<Move> moves;
 
     public Journal(){
-        moves = new ArrayList<Moves>();
+        moves = new ArrayList<Move>();
+        id = UUID.randomUUID().toString();
     }
 
-    public void addMove(Moves move) {
+    public Journal(String name){
+        this.name = name;
+        moves = new ArrayList<Move>();
+        id = UUID.randomUUID().toString();
+    }
+
+    public void addMove(Move move) {
         moves.add(move);
     }
 
-    public void removeMove(Moves move) {
+    public void removeMove(Move move) {
         moves.remove(move);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public List<Move> getMoves() {
+        return new ArrayList<>(moves);
     }
 
     @Override

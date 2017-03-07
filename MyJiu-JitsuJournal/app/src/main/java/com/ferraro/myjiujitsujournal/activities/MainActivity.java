@@ -1,9 +1,11 @@
 package com.ferraro.myjiujitsujournal.activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
@@ -27,6 +29,11 @@ public class MainActivity extends ActionBarActivity {
         String welcomeMessage = welcomeMessageText.getText().toString();
         welcomeMessage = thisUser.getUsername() + "'" + welcomeMessage;
         welcomeMessageText.setText(welcomeMessage);
+    }
+
+    public void showDefaultJournal(View view) {
+        Intent journalIntent = new Intent(this, JournalActivity.class);
+        startActivity(journalIntent);
     }
 
     @Override
