@@ -27,7 +27,8 @@
         </activity>
         <activity
             android:name="com.ferraro.myjiujitsujournal.activities.JournalActivity"
-            android:label="@string/title_activity_journal" >
+            android:label="@string/title_activity_journal"
+            android:windowSoftInputMode="stateHidden">
         </activity>
     </application>
 

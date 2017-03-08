@@ -32,12 +32,34 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:layout_weight="1"
+                android:hint="Search"
+                android:id="@+id/moveSearchBar"/>
+
+            <Spinner
+                android:id="@+id/jouranlMovesSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/display_journal_moves_array"/>
+
+        </LinearLayout>
+
         <ListView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/listView"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
 </LinearLayout>

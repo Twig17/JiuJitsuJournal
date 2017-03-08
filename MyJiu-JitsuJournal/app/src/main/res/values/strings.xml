@@ -6,10 +6,13 @@
     <string name="pref_previously_started">previously_started</string>
     <string name="action_settings">Settings</string>
 
-    <string name="user_file">user_file</string>
-    <string name="journal_file">journal_file</string>
-    <string name="defaultJournal_file">defaultJournal_file</string>
+    <string name="category_prompt">Settings</string>
 
     <string name="title_activity_username_setup">UsernameSetupActivity</string>
     <string name="title_activity_journal">JournalActivity</string>
+
+    <string-array name="display_journal_moves_array">
+        <item>Positions</item>
+        <item>Moves</item>
+    </string-array>
 </resources>

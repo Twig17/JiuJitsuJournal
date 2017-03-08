@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.ferraro.myjiujitsujournal.Constants.MyConstants;
-import com.ferraro.myjiujitsujournal.Constants.Position;
-import com.ferraro.myjiujitsujournal.Constants.TopBottom;
 import com.ferraro.myjiujitsujournal.mjjj.Journal;
-import com.ferraro.myjiujitsujournal.mjjj.Move;
 import com.ferraro.myjiujitsujournal.mjjj.MyApp;
 import com.ferraro.myjiujitsujournal.mjjj.User;
 
@@ -68,25 +65,7 @@ public class SerializationDatabase extends Activity implements IDatabase{
 
     @Override
     public Journal getDefaultJournal() {
-        Journal defaultJournal = new Journal("Default Journal");
-
-        Move move1 = new Move("Some Takedown");
-        move1.addStep("First Step");
-        move1.addStep("another step");
-        move1.addStep("last thing to do");
-        move1.setTopBottom(TopBottom.STANDING);
-        move1.setPosition(Position.STANDING);
-        defaultJournal.addMove(move1);
-
-        Move move2 = new Move("A Choke");
-        move2.addStep("do this first");
-        move2.addStep("then do this");
-        move2.addStep("win");
-        move2.setPosition(Position.CLOSED);
-        move2.setTopBottom(TopBottom.BOTTOM);
-        defaultJournal.addMove(move2);
-
-        return defaultJournal;
+        return CreateDefaultJournal.createJournal();
     }
 
     @Override
