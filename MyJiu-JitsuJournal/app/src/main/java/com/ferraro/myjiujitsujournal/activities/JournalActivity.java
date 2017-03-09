@@ -1,6 +1,7 @@
 package com.ferraro.myjiujitsujournal.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
@@ -158,8 +159,19 @@ public class JournalActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 //start new view to view the steps in the move
+                startMoveActivity();
+
             }
         });
+    }
+
+    private void startMoveActivity(){
+        Intent journalIntent = new Intent(this, MoveActivity.class);
+
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_ID, journal.getId());
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_NAME, "Triangle");
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_POSITION, "Closed Guard");
+        startActivity(journalIntent);
     }
 
     private void displayPositions() {

@@ -22,6 +22,12 @@ public class Move implements Serializable {
         steps = new ArrayList<String>();
     }
 
+    public Move(String name, Position position) {
+        this.name = name;
+        this.position = position;
+        steps = new ArrayList<String>();
+    }
+
     public void addStep(String newStep){
         steps.add(newStep);
     }
@@ -78,12 +84,16 @@ public class Move implements Serializable {
 
         Move move = (Move) o;
 
-        return !(name != null ? !name.equals(move.name) : move.name != null);
+        if (getName() != null ? !getName().equals(move.getName()) : move.getName() != null)
+            return false;
+        return getPosition() == move.getPosition();
 
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getPosition() != null ? getPosition().hashCode() : 0);
+        return result;
     }
 }
