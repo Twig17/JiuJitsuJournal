@@ -1,15 +1,26 @@
 package com.ferraro.myjiujitsujournal.Constants;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Nick on 3/6/2017.
  */
 public enum Position {
         CLOSED("Closed Guard"),
-        HALF_MOUNT("Half Mount"),
-        HALF_GAARD("Half Guard"),
         FULL_MOUNT("Full Mount"),
-        FULL_GUARD("Full Guard"),
+        HALF_GUARD("Half Guard"),
+        HALF_MOUNT("Half Mount"),
+        OPEN_GUARD("Open Guard"),
         STANDING("Standing");
+
+        private static final Map<String, Position> lookup = new HashMap<String, Position>();
+
+        static {
+                for (Position p : Position.values()) {
+                        lookup.put(p.getValue(), p);
+                }
+        }
 
         private String name;
 
@@ -19,5 +30,9 @@ public enum Position {
 
         public String getValue() {
                 return name;
+        }
+
+        public static Position get(String name) {
+                return lookup.get(name);
         }
 }

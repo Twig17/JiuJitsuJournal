@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
+import com.ferraro.myjiujitsujournal.mjjj.Journal;
 import com.ferraro.myjiujitsujournal.mjjj.R;
 import com.ferraro.myjiujitsujournal.mjjj.User;
 
@@ -54,6 +55,8 @@ public class UsernameSetupActivity extends ActionBarActivity {
         if( editTextLayout.getText().length() > 1 ) {
             User user = new User(editTextLayout.getText().toString());
             engine.setThisUser(user);
+            engine.getDatabase().saveMyJournal(new Journal("My Journal"));
+            engine.setMyJournal(engine.getDatabase().getMyJournal());
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

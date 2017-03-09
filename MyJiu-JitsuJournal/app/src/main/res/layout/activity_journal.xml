@@ -46,11 +46,21 @@
                 android:hint="Search"
                 android:id="@+id/moveSearchBar"/>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:text="View All Positions"
+                android:onClick="CreateListView"
+                android:id="@+id/show_positions_button" />
+
             <Spinner
                 android:id="@+id/jouranlMovesSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:visibility="visible"
                 android:entries="@array/display_journal_moves_array"/>
 
         </LinearLayout>

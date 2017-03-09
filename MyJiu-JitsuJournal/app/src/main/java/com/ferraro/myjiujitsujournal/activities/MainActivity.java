@@ -1,14 +1,16 @@
 package com.ferraro.myjiujitsujournal.activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ferraro.myjiujitsujournal.Constants.MyConstants;
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
+import com.ferraro.myjiujitsujournal.mjjj.Journal;
 import com.ferraro.myjiujitsujournal.mjjj.R;
 import com.ferraro.myjiujitsujournal.mjjj.User;
 
@@ -33,6 +35,15 @@ public class MainActivity extends ActionBarActivity {
 
     public void showDefaultJournal(View view) {
         Intent journalIntent = new Intent(this, JournalActivity.class);
+        journalIntent.putExtra(MyConstants.JOURNAL_TO_OPEN, engine.getDefaultJournal().getId());
+        startActivity(journalIntent);
+    }
+
+    public void showMyJournal(View view) {
+        Intent journalIntent = new Intent(this, JournalActivity.class);
+        Journal j = engine.getMyJournal();
+        String s = j.getId();
+        journalIntent.putExtra(MyConstants.JOURNAL_TO_OPEN, engine.getMyJournal().getId());
         startActivity(journalIntent);
     }
 
