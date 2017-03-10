@@ -96,4 +96,9 @@ public class Move implements Serializable {
         result = 31 * result + (getPosition() != null ? getPosition().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

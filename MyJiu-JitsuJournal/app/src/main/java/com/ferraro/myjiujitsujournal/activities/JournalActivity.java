@@ -34,8 +34,10 @@ public class JournalActivity extends ActionBarActivity {
     private Engine engine;
     private ListView list;
     private Journal journal;
-    private List<String> List_file;
-    private ArrayAdapter<String> arrayAdapter;
+    private List<Move> List_file;
+    private List<String> list_file_position;
+    private ArrayAdapter<String> arrayAdapterPosition;
+    private ArrayAdapter<Move> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class JournalActivity extends ActionBarActivity {
         TextView journalNameText =(TextView)findViewById(R.id.journal_name);
         journalNameText.setText(journal.getName());
 
-        List_file = new ArrayList<String>();
+        List_file = new ArrayList<Move>();
         list = (ListView)findViewById(R.id.listView);
         Spinner mySpinner=(Spinner) findViewById(R.id.jouranlMovesSpinner);
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -65,6 +67,7 @@ public class JournalActivity extends ActionBarActivity {
 
             }
         });
+
         CreateListView();
     }
 
@@ -108,15 +111,48 @@ public class JournalActivity extends ActionBarActivity {
         showAllButton.setVisibility(View.GONE);
         String text = mySpinner.getSelectedItem().toString();
 
-
         if("Moves".equals(text)){
             displayMoves(null);
         }
         else if("Positions".equals(text)){
             displayPositions();
         }
+    }
 
-        //Add search bar to the listView
+    private void displayMoves(Position positionFilter) {
+        List_file.clear();
+        List<Move> journalMoves = journal.getMoves();
+        if(positionFilter != null) {
+            TextView journalNameText = (TextView) findViewById(R.id.journal_name);
+            journalNameText.setText(journal.getName() + "\n" + positionFilter.getValue());
+        }
+        //loop through all moves in the journal and show a list of them
+        for(Move move: journalMoves) {
+            if(positionFilter == null){
+               List_file.add(move);
+            }else if(move.getPosition() == positionFilter){
+                List_file.add(move);
+            }
+        }
+        //Create an adapter for the listView and add the ArrayList to the adapter.
+        arrayAdapter = new ArrayAdapter<Move>(JournalActivity.this, android.R.layout.simple_list_item_1,List_file);
+        list.setAdapter(arrayAdapter);
+        list.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                //start new view to view the steps in the move
+                Move moveSelected = (Move) arg0.getItemAtPosition(arg2);
+                startMoveActivity(moveSelected.getName(), moveSelected.getPosition().getValue());
+
+            }
+        });
+
+        EditText inputSearchPosition = (EditText) findViewById(R.id.moveSearchBarPosition);
+        EditText inputSearchMove = (EditText) findViewById(R.id.moveSearchBar);
+
+        inputSearchMove.setVisibility(View.VISIBLE);
+        inputSearchPosition.setVisibility(View.GONE);
+
         EditText inputSearch = (EditText) findViewById(R.id.moveSearchBar);
         inputSearch.addTextChangedListener(new TextWatcher() {
 
@@ -134,47 +170,19 @@ public class JournalActivity extends ActionBarActivity {
             public void afterTextChanged(Editable arg0) {
             }
         });
-
     }
 
-    private void displayMoves(Position positionFilter) {
-        List_file.clear();
-        List<Move> journalMoves = journal.getMoves();
-        if(positionFilter != null) {
-            TextView journalNameText = (TextView) findViewById(R.id.journal_name);
-            journalNameText.setText(journal.getName() + "\n" + positionFilter.getValue());
-        }
-        //loop through all moves in the journal and show a list of them
-        for(Move move: journalMoves) {
-            if(positionFilter == null){
-                List_file.add(move.getName() + " (" + move.getPosition().getValue() + ")");
-            }else if(move.getPosition() == positionFilter){
-                List_file.add(move.getName());
-            }
-        }
-        //Create an adapter for the listView and add the ArrayList to the adapter.
-        arrayAdapter = new ArrayAdapter<String>(JournalActivity.this, android.R.layout.simple_list_item_1,List_file);
-        list.setAdapter(arrayAdapter);
-        list.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                //start new view to view the steps in the move
-                startMoveActivity();
-
-            }
-        });
-    }
-
-    private void startMoveActivity(){
+    private void startMoveActivity(String move, String position){
         Intent journalIntent = new Intent(this, MoveActivity.class);
 
         journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_ID, journal.getId());
-        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_NAME, "Triangle");
-        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_POSITION, "Closed Guard");
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_NAME, move);
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_POSITION, position);
         startActivity(journalIntent);
     }
 
     private void displayPositions() {
+        list_file_position = new ArrayList<String>();
         List<Move> journalMoves = journal.getMoves();
         //loop through all moves in the journal and show a list of them
         for(Position position: Position.values()) {
@@ -185,12 +193,12 @@ public class JournalActivity extends ActionBarActivity {
                 }
             }
             if(hasMoves) {
-                List_file.add(position.getValue());
+                list_file_position.add(position.getValue());
             }
         }
         //Create an adapter for the listView and add the ArrayList to the adapter.
-        arrayAdapter = new ArrayAdapter<String>(JournalActivity.this, android.R.layout.simple_list_item_1,List_file);
-        list.setAdapter(arrayAdapter);
+        arrayAdapterPosition = new ArrayAdapter<String>(JournalActivity.this, android.R.layout.simple_list_item_1,list_file_position);
+        list.setAdapter(arrayAdapterPosition);
         list.setOnItemClickListener(new OnItemClickListener()
         {
             @Override
@@ -208,5 +216,29 @@ public class JournalActivity extends ActionBarActivity {
                 displayMoves(position);
             }
         });
+        EditText inputSearchPosition = (EditText) findViewById(R.id.moveSearchBarPosition);
+        EditText inputSearchMove = (EditText) findViewById(R.id.moveSearchBar);
+
+        inputSearchMove.setVisibility(View.GONE);
+        inputSearchPosition.setVisibility(View.VISIBLE);
+
+        //Add search bar to the listView
+        inputSearchPosition.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                JournalActivity.this.arrayAdapterPosition.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+            }
+        });
+
     }
 }

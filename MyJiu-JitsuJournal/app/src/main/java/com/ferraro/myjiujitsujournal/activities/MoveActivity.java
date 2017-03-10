@@ -59,7 +59,7 @@ public class MoveActivity extends ActionBarActivity {
         list_file = new ArrayList<String>();
         list = (ListView)findViewById(R.id.moveListView);
 
-        int counter = 0;
+        int counter = 1;
         for(String step: journal.getMoves().get(0).getSteps()) {
             list_file.add("Step " + counter + ": "+ step);
             counter++;

@@ -44,7 +44,16 @@
                 android:inputType="textPersonName"
                 android:layout_weight="1"
                 android:hint="Search"
+                android:visibility="gone"
                 android:id="@+id/moveSearchBar"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:layout_weight="1"
+                android:hint="Search"
+                android:id="@+id/moveSearchBarPosition"/>
 
             <Button
                 android:layout_width="match_parent"
