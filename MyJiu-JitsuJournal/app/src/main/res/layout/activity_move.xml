@@ -52,6 +52,36 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView android:text="Position: "
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:id="@+id/movePostionText"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:id="@+id/moveTopText"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView android:text="Steps:"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,5 +96,18 @@
             android:id="@+id/moveListView"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Play All"
+                android:onClick="playAllSteps"
+                android:id="@+id/play_all_button"/>
+        </LinearLayout>
 
 </LinearLayout>
