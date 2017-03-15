@@ -3,8 +3,10 @@ package com.ferraro.myjiujitsujournal.activities;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,9 +18,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.ferraro.myjiujitsujournal.Constants.Position;
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
 import com.ferraro.myjiujitsujournal.mjjj.Journal;
+import com.ferraro.myjiujitsujournal.mjjj.Move;
 import com.ferraro.myjiujitsujournal.mjjj.R;
 
 import java.util.ArrayList;
@@ -109,8 +114,11 @@ public class EditMoveActivity extends ActionBarActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
-                                        arrayAdapterSteps.add(userInput.getText().toString());
-                                        listView.setSelection(arrayAdapterSteps.getCount() - 1);
+                                        String result = userInput.getText().toString();
+                                        if (!TextUtils.isEmpty(result)) {
+                                            arrayAdapterSteps.add(result);
+                                            listView.setSelection(arrayAdapterSteps.getCount() - 1);
+                                        }
                                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                                         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                                     }
@@ -119,6 +127,8 @@ public class EditMoveActivity extends ActionBarActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
+                                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                                     }
                                 });
 
@@ -131,4 +141,52 @@ public class EditMoveActivity extends ActionBarActivity {
             }
         });
     }
+
+    public void saveMove(View view) {
+        if(validateForm()) {
+            //TODO get the move and add it to the journal
+            finish();
+        }
+    }
+
+    public void cancel(View view) {
+        //TODO put confirm popup here
+        finish();
+    }
+
+    private boolean validateForm() {
+        boolean result = true;
+        Move newMove = new Move();
+        EditText moveNameInput = (EditText) findViewById(R.id.edit_name_title);
+        //not required right now, don't need to do any validation for this
+        EditText moveDescriptionInput = (EditText) findViewById(R.id.moveDescriptionTextView);
+        EditText movePositionInput = (EditText) findViewById(R.id.editPostionText);
+        TextView moveStepsTextInput = (TextView) findViewById(R.id.moveListTextView);
+        ListView moveStepsInput = (ListView) findViewById(R.id.moveListView);
+
+        newMove.setName(moveNameInput.getText().toString());
+        newMove.setDescription(moveDescriptionInput.getText().toString());
+        newMove.setPosition(Position.get(movePositionInput.getText().toString()));
+
+        if(TextUtils.isEmpty(moveNameInput.getText().toString())) {
+            moveNameInput.setError("Mandatory Field");
+            result = false;
+        }
+        if(moveStepsInput.getCount() == 0) {
+            moveStepsTextInput.setText("Steps:You haven't added any steps yet");
+            moveStepsTextInput.setTextColor(Color.RED);
+            result = false;
+        }else {
+            moveStepsTextInput.setText("Steps:");
+            moveStepsTextInput.setTextColor(Color.BLACK);
+        }
+/*        if(journal.getMoves().contains(newMove)){
+            moveNameInput.setError("You already have that Name for current position");
+            result = false;
+        }*/
+
+        return result;
+    }
+
+
 }

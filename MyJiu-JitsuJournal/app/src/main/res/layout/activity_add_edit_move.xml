@@ -13,7 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:orientation="vertical">
 
         <EditText android:hint="Move name"
@@ -42,6 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
+                android:id="@+id/moveDescriptionTextView"
                 android:layout_weight="1"/>
 
             <EditText android:hint="Position: "
@@ -59,25 +60,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView android:text=""
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left"
-                android:id="@+id/moveTopText"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <TextView android:text="Steps:"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
+                android:id="@+id/moveListTextView"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -88,6 +75,8 @@
             android:id="@+id/moveListView"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -101,7 +90,7 @@
             android:text="Add Step"
             android:id="@+id/add_new_step_button"
             android:onClick="addAnotherStep"/>
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -112,14 +101,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:onClick=""
+            android:onClick="cancel"
             android:layout_weight="1"
             android:id="@+id/cancel_edit_button"/>
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:onClick=""
+            android:onClick="saveMove"
             android:layout_weight="1"
             android:id="@+id/save_move_button"/>
     </LinearLayout>

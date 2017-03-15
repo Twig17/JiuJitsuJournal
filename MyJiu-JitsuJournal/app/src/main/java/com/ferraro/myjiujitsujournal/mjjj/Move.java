@@ -17,6 +17,10 @@ public class Move implements Serializable {
     private TopBottom topBottom;
     private List<String> steps;
 
+    public Move() {
+        steps = new ArrayList<String>();
+    }
+
     public Move(String name) {
         this.name = name;
         steps = new ArrayList<String>();
