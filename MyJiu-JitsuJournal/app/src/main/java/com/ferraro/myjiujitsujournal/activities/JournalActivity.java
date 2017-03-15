@@ -45,11 +45,14 @@ public class JournalActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
         String journalToOpen = getIntent().getStringExtra(MyConstants.JOURNAL_TO_OPEN);
+        Button addMoveButton =(Button)findViewById(R.id.add_new_button);
 
         if(journalToOpen.equals(engine.getDefaultJournal().getId())){
             journal = engine.getDefaultJournal();
+            addMoveButton.setVisibility(View.GONE);
         }else if(journalToOpen.equals(engine.getMyJournal().getId())) {
             journal = engine.getMyJournal();
+            addMoveButton.setVisibility(View.VISIBLE);
         }
 
         TextView journalNameText =(TextView)findViewById(R.id.journal_name);
@@ -241,4 +244,10 @@ public class JournalActivity extends ActionBarActivity {
         });
 
     }
+
+    public void addMove(View view) {
+        Intent journalIntent = new Intent(this, EditMoveActivity.class);
+        startActivity(journalIntent);
+    }
+
 }

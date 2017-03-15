@@ -13,14 +13,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="7"
+        android:layout_weight="5"
         android:orientation="vertical">
 
-        <TextView android:text="Move name"
+        <EditText android:hint="Move name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:id="@+id/move_name_title"
+            android:id="@+id/edit_name_title"
             android:layout_weight="1"/>
     </LinearLayout>
 
@@ -38,25 +38,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView android:text="move description\n"
+            <EditText android:hint="move description\n"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
                 android:layout_weight="1"/>
 
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView android:text="Position: "
+            <EditText android:hint="Position: "
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
-                android:id="@+id/movePostionText"
+                android:id="@+id/editPostionText"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -102,29 +94,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Play All"
-            android:onClick="playAllSteps"
-            android:layout_weight="1"
-            android:id="@+id/play_all_button"/>
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Copy To My Journal"
-            android:onClick="copyMoveToMyJournal"
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:id="@+id/copy_button"/>
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit Move"
-            android:onClick="editMove"
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:id="@+id/edit_button"/>
+            android:text="Add Step"
+            android:id="@+id/add_new_step_button"
+            android:onClick="addAnotherStep"/>
         </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:onClick=""
+            android:layout_weight="1"
+            android:id="@+id/cancel_edit_button"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:onClick=""
+            android:layout_weight="1"
+            android:id="@+id/save_move_button"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -12,6 +12,7 @@ public class Journal implements Serializable {
     private String name;
     private String id;
     private List<Move> moves;
+    private boolean isMyJournal;
 
     public Journal(){
         moves = new ArrayList<Move>();
@@ -20,6 +21,14 @@ public class Journal implements Serializable {
 
     public Journal(String name){
         this.name = name;
+        this.isMyJournal = false;
+        moves = new ArrayList<Move>();
+        id = UUID.randomUUID().toString();
+    }
+
+    public Journal(String name,boolean isMyJournal){
+        this.name = name;
+        this.isMyJournal = isMyJournal;
         moves = new ArrayList<Move>();
         id = UUID.randomUUID().toString();
     }
@@ -46,6 +55,10 @@ public class Journal implements Serializable {
 
     public List<Move> getMoves() {
         return new ArrayList<>(moves);
+    }
+
+    public boolean isMyJournal() {
+        return isMyJournal;
     }
 
     @Override

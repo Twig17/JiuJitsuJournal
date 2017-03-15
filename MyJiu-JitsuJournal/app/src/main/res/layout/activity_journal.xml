@@ -81,4 +81,18 @@
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add New Move"
+            android:onClick="addMove"
+            android:layout_weight="1"
+            android:id="@+id/add_new_button"/>
+    </LinearLayout>
+
 </LinearLayout>

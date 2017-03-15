@@ -1,5 +1,6 @@
 package com.ferraro.myjiujitsujournal.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,11 +55,17 @@ public class MoveActivity extends ActionBarActivity {
         String moveIdToOpen = getIntent().getStringExtra(MyConstants.MOVE_TO_OPEN_ID);
         String moveNameToOpen = getIntent().getStringExtra(MyConstants.MOVE_TO_OPEN_NAME);
         String movePositionToOpen = getIntent().getStringExtra(MyConstants.MOVE_TO_OPEN_POSITION);
+        Button editMoveButton =(Button)findViewById(R.id.edit_button);
+        Button copyMoveButton =(Button)findViewById(R.id.copy_button);
 
         if(moveIdToOpen.equals(engine.getDefaultJournal().getId())){
             journal = engine.getDefaultJournal();
+            editMoveButton.setVisibility(View.GONE);
+            copyMoveButton.setVisibility(View.VISIBLE);
         }else if(moveIdToOpen.equals(engine.getMyJournal().getId())) {
             journal = engine.getMyJournal();
+            editMoveButton.setVisibility(View.VISIBLE);
+            copyMoveButton.setVisibility(View.GONE);
         }
 
         Move tempMove = new Move(moveNameToOpen, Position.get(movePositionToOpen));
@@ -82,7 +90,7 @@ public class MoveActivity extends ActionBarActivity {
         int counter = 1;
         int positionOfMove = journal.getMoves().indexOf(thisMove);
         for(String step : journal.getMoves().get(positionOfMove).getSteps()) {
-            list_file.add("Step " + counter + ": "+ step);
+            list_file.add(counter + ": "+ step);
             counter++;
         }
 
@@ -138,5 +146,22 @@ public class MoveActivity extends ActionBarActivity {
             textToSpeech.speak(toSpeak, TextToSpeech.QUEUE_ADD, null);
             textToSpeech.playSilence(1000, TextToSpeech.QUEUE_ADD, null);
         }
+    }
+
+    public void copyMoveToMyJournal(View view){
+        Journal myJournal = engine.getMyJournal();
+        if(!myJournal.getMoves().contains(thisMove)) {
+            myJournal.addMove(thisMove);
+            engine.setMyJournal(myJournal);
+        }
+    }
+
+    public void editMove(View view) {
+        Intent journalIntent = new Intent(this, EditMoveActivity.class);
+
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_ID, journal.getId());
+        //journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_NAME, move);
+        //journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_POSITION, position);
+        startActivity(journalIntent);
     }
 }

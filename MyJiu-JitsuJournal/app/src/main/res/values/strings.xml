@@ -16,4 +16,5 @@
         <item>Moves</item>
     </string-array>
     <string name="title_activity_move">MoveActivity</string>
+    <string name="title_activity_edit_move">EditMoveActivity</string>
 </resources>
