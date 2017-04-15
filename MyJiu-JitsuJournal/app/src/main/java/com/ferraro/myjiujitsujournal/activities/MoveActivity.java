@@ -159,7 +159,7 @@ public class MoveActivity extends ActionBarActivity {
     public void editMove(View view) {
         Intent journalIntent = new Intent(this, EditMoveActivity.class);
 
-        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_ID, journal.getId());
+        journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_ID, thisMove.getId());
         //journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_NAME, move);
         //journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_POSITION, position);
         startActivity(journalIntent);

@@ -45,11 +45,11 @@
                 android:id="@+id/moveDescriptionTextView"
                 android:layout_weight="1"/>
 
-            <EditText android:hint="Position: "
+            <Spinner android:hint="Position: "
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
-                android:id="@+id/editPostionText"
+                android:id="@+id/editPositionSpinner"
                 android:layout_weight="1"/>
 
         </LinearLayout>

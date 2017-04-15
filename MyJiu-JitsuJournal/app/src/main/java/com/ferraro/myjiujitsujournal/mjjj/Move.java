@@ -6,11 +6,13 @@ import com.ferraro.myjiujitsujournal.Constants.TopBottom;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Nick on 3/5/2017.
  */
 public class Move implements Serializable {
+    private String id;
     private String name;
     private String description;
     private Position position;
@@ -19,17 +21,20 @@ public class Move implements Serializable {
 
     public Move() {
         steps = new ArrayList<String>();
+        id = UUID.randomUUID().toString();
     }
 
     public Move(String name) {
         this.name = name;
         steps = new ArrayList<String>();
+        id = UUID.randomUUID().toString();
     }
 
     public Move(String name, Position position) {
         this.name = name;
         this.position = position;
         steps = new ArrayList<String>();
+        id = UUID.randomUUID().toString();
     }
 
     public void addStep(String newStep){
@@ -81,6 +86,10 @@ public class Move implements Serializable {
         this.description = description;
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,4 +114,6 @@ public class Move implements Serializable {
     public String toString() {
         return name;
     }
+
+
 }

@@ -18,8 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.ferraro.myjiujitsujournal.Constants.MyConstants;
 import com.ferraro.myjiujitsujournal.Constants.Position;
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
 import com.ferraro.myjiujitsujournal.mjjj.Journal;
@@ -41,9 +43,21 @@ public class EditMoveActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         engine = Engine.getInstance();
+        journal = engine.getMyJournal();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_move);
         listView = (ListView)findViewById(R.id.moveListView);
+
+        //Create dropdown list for position
+        ArrayList<String> positionValues = new ArrayList<String>();
+        for(Position position: Position.values()) {
+            positionValues.add(position.getValue());
+        }
+        Spinner positionSpinner = (Spinner)  findViewById(R.id.editPositionSpinner);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, positionValues);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        positionSpinner.setAdapter(adapter);
+
         //Create an adapter for the listView and add the ArrayList to the adapter.
         list_steps = new ArrayList<String>();
         arrayAdapterSteps = new ArrayAdapter<String>(EditMoveActivity.this, android.R.layout.simple_list_item_1,list_steps);
@@ -55,6 +69,11 @@ public class EditMoveActivity extends ActionBarActivity {
         });
 
         createButtonListener();
+
+        String moveToBeEdited = getIntent().getStringExtra(MyConstants.MOVE_TO_OPEN_ID);
+        if(!TextUtils.isEmpty(moveToBeEdited)) {
+            populateMoveDataIntoForm(moveToBeEdited);
+        }
 
     }
 
@@ -144,29 +163,43 @@ public class EditMoveActivity extends ActionBarActivity {
 
     public void saveMove(View view) {
         if(validateForm()) {
+            Move newMove = getNewMove();
+            journal.addMove(newMove);
+            engine.setMyJournal(journal);
             //TODO get the move and add it to the journal
             finish();
         }
     }
 
     public void cancel(View view) {
-        //TODO put confirm popup here
-        finish();
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setMessage("Are you sure you want to close, move will be lost?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     private boolean validateForm() {
         boolean result = true;
-        Move newMove = new Move();
+        Move newMove = getNewMove();
         EditText moveNameInput = (EditText) findViewById(R.id.edit_name_title);
         //not required right now, don't need to do any validation for this
         EditText moveDescriptionInput = (EditText) findViewById(R.id.moveDescriptionTextView);
-        EditText movePositionInput = (EditText) findViewById(R.id.editPostionText);
+        Spinner movePositionInput = (Spinner) findViewById(R.id.editPositionSpinner);
         TextView moveStepsTextInput = (TextView) findViewById(R.id.moveListTextView);
         ListView moveStepsInput = (ListView) findViewById(R.id.moveListView);
 
         newMove.setName(moveNameInput.getText().toString());
         newMove.setDescription(moveDescriptionInput.getText().toString());
-        newMove.setPosition(Position.get(movePositionInput.getText().toString()));
+        newMove.setPosition(Position.get(movePositionInput.getSelectedItem().toString()));
 
         if(TextUtils.isEmpty(moveNameInput.getText().toString())) {
             moveNameInput.setError("Mandatory Field");
@@ -180,13 +213,41 @@ public class EditMoveActivity extends ActionBarActivity {
             moveStepsTextInput.setText("Steps:");
             moveStepsTextInput.setTextColor(Color.BLACK);
         }
-/*        if(journal.getMoves().contains(newMove)){
+        if(journal.getMoves().contains(newMove)){
             moveNameInput.setError("You already have that Name for current position");
             result = false;
-        }*/
+        }
 
         return result;
     }
 
+    private Move getNewMove() {
+        Move newMove = new Move();
+        EditText moveNameInput = (EditText) findViewById(R.id.edit_name_title);
+        EditText moveDescriptionInput = (EditText) findViewById(R.id.moveDescriptionTextView);
+        Spinner movePositionInput = (Spinner) findViewById(R.id.editPositionSpinner);
+
+        newMove.setName(moveNameInput.getText().toString());
+        newMove.setDescription(moveDescriptionInput.getText().toString());
+        newMove.setPosition(Position.get(movePositionInput.getSelectedItem().toString()));
+        for(String step: list_steps) {
+            newMove.addStep(step);
+        }
+        return newMove;
+    }
+
+    private void populateMoveDataIntoForm(String editMoveId) {
+        Move moveToEdit = null;
+        for(Move move: journal.getMoves())
+        {
+            if(editMoveId.equals(move.getId())){
+                moveToEdit = move;
+            }
+        }
+        if(moveToEdit != null) {
+            EditText moveNameInput = (EditText) findViewById(R.id.edit_name_title);
+            moveNameInput.setText(moveToEdit.getName());
+        }
+    }
 
 }
