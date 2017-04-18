@@ -122,7 +122,7 @@ public class CreateDefaultJournal {
         move9.addStep("Pull your arms down towards your hip");
         move9.addStep("You want to get their elbow against their side ribs");
         move9.addStep("Once there start to pull straight up to rotate their shoulder till they tap");
-        move9.setPosition(Position.HALF_MOUNT);
+        move9.setPosition(Position.SIDE_CONTROL);
         move9.setTopBottom(TopBottom.TOP);
         defaultJournal.addMove(move9);
 

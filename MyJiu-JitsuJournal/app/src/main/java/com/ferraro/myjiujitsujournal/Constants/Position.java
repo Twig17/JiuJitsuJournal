@@ -10,7 +10,7 @@ public enum Position {
         CLOSED("Closed Guard"),
         FULL_MOUNT("Full Mount"),
         HALF_GUARD("Half Guard"),
-        HALF_MOUNT("Half Mount"),
+        SIDE_CONTROL("Side Control"),
         OPEN_GUARD("Open Guard"),
         STANDING("Standing");
 

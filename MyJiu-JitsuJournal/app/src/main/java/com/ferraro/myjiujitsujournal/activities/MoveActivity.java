@@ -78,6 +78,9 @@ public class MoveActivity extends ActionBarActivity {
         TextView moveNameText =(TextView)findViewById(R.id.move_name_title);
         moveNameText.setText(moveNameToOpen);
 
+        TextView moveDescriptionText =(TextView)findViewById(R.id.moveDescriptionText);
+        moveDescriptionText.setText(moveDescriptionText.getText() + thisMove.getDescription());
+
         TextView movePositionText =(TextView)findViewById(R.id.movePostionText);
         movePositionText.setText(movePositionText.getText() + thisMove.getPosition().getValue());
 
@@ -112,7 +115,9 @@ public class MoveActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_move, menu);
+        if(journal.isMyJournal()) {
+            getMenuInflater().inflate(R.menu.menu_move, menu);
+        }
         return true;
     }
 
@@ -125,6 +130,10 @@ public class MoveActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == R.id.remove_move) {
+            removeThisMove();
             return true;
         }
 
@@ -163,5 +172,9 @@ public class MoveActivity extends ActionBarActivity {
         //journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_NAME, move);
         //journalIntent.putExtra(MyConstants.MOVE_TO_OPEN_POSITION, position);
         startActivity(journalIntent);
+    }
+
+    private void removeThisMove() {
+        journal.removeMove(thisMove);
     }
 }

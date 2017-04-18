@@ -37,6 +37,15 @@ public class Journal implements Serializable {
         moves.add(move);
     }
 
+    public void updateMove(Move move) {
+        for(Move m: moves) {
+            if(m.getId().equals(move.getId())) {
+                m = move;
+            }
+        }
+    }
+
+
     public void removeMove(Move move) {
         moves.remove(move);
     }
