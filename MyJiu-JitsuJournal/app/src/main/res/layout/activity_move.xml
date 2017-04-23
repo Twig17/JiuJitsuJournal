@@ -53,11 +53,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView android:text="Position: "
+            <TextView android:text="Gi/No-Gi: "
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
-                android:id="@+id/movePostionText"
+                android:id="@+id/moveGiText"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -68,11 +68,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView android:text=""
+            <TextView android:text="Position: "
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left"
-                android:id="@+id/moveTopText"
+                android:id="@+id/movePostionText"
                 android:layout_weight="1"/>
 
         </LinearLayout>

@@ -53,7 +53,7 @@ public class UsernameSetupActivity extends ActionBarActivity {
 
         //check value of name is longer than 1 char, otherwise display error
         if( editTextLayout.getText().length() > 1 ) {
-            User user = new User(editTextLayout.getText().toString());
+            User user = new User(editTextLayout.getText().toString().trim());
             engine.setThisUser(user);
             engine.getDatabase().saveMyJournal(new Journal("My Journal", true));
             engine.setMyJournal(engine.getDatabase().getMyJournal());

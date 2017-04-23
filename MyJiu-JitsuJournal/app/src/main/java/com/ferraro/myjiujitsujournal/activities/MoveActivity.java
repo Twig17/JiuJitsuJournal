@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,13 +80,25 @@ public class MoveActivity extends ActionBarActivity {
         moveNameText.setText(moveNameToOpen);
 
         TextView moveDescriptionText =(TextView)findViewById(R.id.moveDescriptionText);
-        moveDescriptionText.setText(moveDescriptionText.getText() + thisMove.getDescription());
+        if(!TextUtils.isEmpty(thisMove.getDescription())) {
+            moveDescriptionText.setText(moveDescriptionText.getText() + thisMove.getDescription());
+        } else {
+            moveDescriptionText.setVisibility(View.INVISIBLE);
+        }
+
+        TextView moveGiText =(TextView)findViewById(R.id.moveGiText);
+        moveGiText.setText(moveGiText.getText() + thisMove.getGiNoGi().getValue());
 
         TextView movePositionText =(TextView)findViewById(R.id.movePostionText);
-        movePositionText.setText(movePositionText.getText() + thisMove.getPosition().getValue());
+        String positionDisplayString = "";
+        if(!Position.STANDING.equals(thisMove.getPosition())) {
+            positionDisplayString =  movePositionText.getText() + thisMove.getTopBottom().getValue()
+                    + " of " + thisMove.getPosition().getValue();
+        } else {
+            positionDisplayString = movePositionText.getText() + thisMove.getPosition().getValue();
+        }
+        movePositionText.setText(positionDisplayString);
 
-        TextView moveTopText =(TextView)findViewById(R.id.moveTopText);
-        moveTopText.setText(moveTopText.getText() + thisMove.getTopBottom().getValue());
 
         list_file = new ArrayList<String>();
         list = (ListView)findViewById(R.id.moveListView);
@@ -176,5 +189,7 @@ public class MoveActivity extends ActionBarActivity {
 
     private void removeThisMove() {
         journal.removeMove(thisMove);
+        engine.setMyJournal(journal);
+        finish();
     }
 }

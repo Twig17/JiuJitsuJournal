@@ -1,5 +1,6 @@
 package com.ferraro.myjiujitsujournal.database;
 
+import com.ferraro.myjiujitsujournal.Constants.Gi;
 import com.ferraro.myjiujitsujournal.Constants.Position;
 import com.ferraro.myjiujitsujournal.Constants.TopBottom;
 import com.ferraro.myjiujitsujournal.mjjj.Journal;
@@ -23,6 +24,7 @@ public class CreateDefaultJournal {
                 "push down using your grip by their collar to drop them to the ground");
         move1.setTopBottom(TopBottom.STANDING);
         move1.setPosition(Position.STANDING);
+        move1.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move1);
 
         Move move2 = new Move("A Choke");
@@ -33,6 +35,7 @@ public class CreateDefaultJournal {
         move2.addStep("Another finish is get a cross grip on their gui collar");
         move2.setPosition(Position.CLOSED);
         move2.setTopBottom(TopBottom.BOTTOM);
+        move2.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move2);
 
         Move move3 = new Move("Guard pass");
@@ -45,6 +48,7 @@ public class CreateDefaultJournal {
         move3.addStep("Bring your back leg forward onto their leg and pass their guard");
         move3.setTopBottom(TopBottom.TOP);
         move3.setPosition(Position.CLOSED);
+        move3.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move3);
 
         Move move4 = new Move("Ezekiel Choke");
@@ -58,15 +62,8 @@ public class CreateDefaultJournal {
         move4.addStep("You can start to extend your arm straight to apply more pressure to get the tap");
         move4.setPosition(Position.CLOSED);
         move4.setTopBottom(TopBottom.TOP);
+        move4.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move4);
-
-        Move move5 = new Move("Takedown2");
-        move5.addStep("First Step");
-        move5.addStep("another step");
-        move5.addStep("last thing to do");
-        move5.setTopBottom(TopBottom.STANDING);
-        move5.setPosition(Position.STANDING);
-        defaultJournal.addMove(move5);
 
         Move move6 = new Move("Triangle");
         move6.addStep("Get a hold of one of your opponents arms and pull it across your body, " +
@@ -85,6 +82,7 @@ public class CreateDefaultJournal {
         move6.addStep("Squeeze your legs together to help finish");
         move6.setPosition(Position.CLOSED);
         move6.setTopBottom(TopBottom.BOTTOM);
+        move6.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move6);
 
         Move move7 = new Move("Triangle Setup 2");
@@ -97,6 +95,7 @@ public class CreateDefaultJournal {
         move7.addStep("You want the ankle of the leg behind their head to be in the back of your other knee");
         move7.setTopBottom(TopBottom.BOTTOM);
         move7.setPosition(Position.CLOSED);
+        move7.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move7);
 
         Move move8 = new Move("Scissor Sweep");
@@ -114,6 +113,7 @@ public class CreateDefaultJournal {
         move8.addStep("Follow through with the leg that was on their chest move on the ground next to them and assume the full mount position");
         move8.setPosition(Position.CLOSED);
         move8.setTopBottom(TopBottom.BOTTOM);
+        move8.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move8);
 
         Move move9 = new Move("Americana");
@@ -124,6 +124,7 @@ public class CreateDefaultJournal {
         move9.addStep("Once there start to pull straight up to rotate their shoulder till they tap");
         move9.setPosition(Position.SIDE_CONTROL);
         move9.setTopBottom(TopBottom.TOP);
+        move9.setGiNoGi(Gi.GI);
         defaultJournal.addMove(move9);
 
         return defaultJournal;

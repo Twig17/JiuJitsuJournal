@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -248,6 +250,29 @@ public class JournalActivity extends ActionBarActivity {
     public void addMove(View view) {
         Intent journalIntent = new Intent(this, EditMoveActivity.class);
         startActivity(journalIntent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Button showAllButton=(Button) findViewById(R.id.show_positions_button);
+        if(View.VISIBLE == showAllButton.getVisibility()) {
+            CreateListView();
+        } else {
+            finish();
+        }
+
     }
 
 }

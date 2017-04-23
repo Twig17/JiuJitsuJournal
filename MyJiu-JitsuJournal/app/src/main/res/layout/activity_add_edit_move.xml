@@ -45,13 +45,33 @@
                 android:id="@+id/moveDescriptionTextView"
                 android:layout_weight="1"/>
 
-            <Spinner android:hint="Position: "
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left"
-                android:id="@+id/editPositionSpinner"
-                android:layout_weight="1"/>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <Spinner android:hint="Position: "
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:id="@+id/editPositionSpinner"
+                    android:layout_weight="1"/>
+
+                <Spinner android:hint="TopBottom: "
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:id="@+id/editTopBottomSpinner"
+                    android:layout_weight="1"/>
+
+                <Spinner android:hint="Gi: "
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:id="@+id/editGiSpinner"
+                    android:layout_weight="1"/>
+                </LinearLayout>
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

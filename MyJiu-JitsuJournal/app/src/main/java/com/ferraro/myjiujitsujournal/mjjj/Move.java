@@ -1,5 +1,6 @@
 package com.ferraro.myjiujitsujournal.mjjj;
 
+import com.ferraro.myjiujitsujournal.Constants.Gi;
 import com.ferraro.myjiujitsujournal.Constants.Position;
 import com.ferraro.myjiujitsujournal.Constants.TopBottom;
 
@@ -17,6 +18,7 @@ public class Move implements Serializable {
     private String description;
     private Position position;
     private TopBottom topBottom;
+    private Gi giNoGi;
     private List<String> steps;
 
     public Move() {
@@ -88,6 +90,14 @@ public class Move implements Serializable {
 
     public String getId() {
         return id;
+    }
+
+    public Gi getGiNoGi() {
+        return giNoGi;
+    }
+
+    public void setGiNoGi(Gi giNoGi) {
+        this.giNoGi = giNoGi;
     }
 
     @Override

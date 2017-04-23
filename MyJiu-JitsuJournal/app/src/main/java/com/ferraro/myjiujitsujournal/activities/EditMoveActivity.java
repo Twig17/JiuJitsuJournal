@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.ferraro.myjiujitsujournal.Constants.Gi;
 import com.ferraro.myjiujitsujournal.Constants.MyConstants;
 import com.ferraro.myjiujitsujournal.Constants.Position;
 import com.ferraro.myjiujitsujournal.Constants.TopBottom;
@@ -50,15 +51,8 @@ public class EditMoveActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_edit_move);
         listView = (ListView)findViewById(R.id.moveListView);
 
-        //Create dropdown list for position
-        ArrayList<String> positionValues = new ArrayList<String>();
-        for(Position position: Position.values()) {
-            positionValues.add(position.getValue());
-        }
-        Spinner positionSpinner = (Spinner)  findViewById(R.id.editPositionSpinner);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, positionValues);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        positionSpinner.setAdapter(adapter);
+        //Create dropdown lists
+        populateSpinners();
 
         //Create an adapter for the listView and add the ArrayList to the adapter.
         list_steps = new ArrayList<String>();
@@ -203,12 +197,19 @@ public class EditMoveActivity extends ActionBarActivity {
         TextView moveStepsTextInput = (TextView) findViewById(R.id.moveListTextView);
         ListView moveStepsInput = (ListView) findViewById(R.id.moveListView);
 
-        newMove.setName(moveNameInput.getText().toString());
-        newMove.setDescription(moveDescriptionInput.getText().toString());
+        newMove.setName(moveNameInput.getText().toString().trim());
+        newMove.setDescription(moveDescriptionInput.getText().toString().trim());
         newMove.setPosition(Position.get(movePositionInput.getSelectedItem().toString()));
 
         if(TextUtils.isEmpty(moveNameInput.getText().toString())) {
             moveNameInput.setError("Mandatory Field");
+            result = false;
+        }else if(moveNameInput.getText().toString().length() > 50) {
+            moveNameInput.setError("Max length is 50");
+            result = false;
+        }
+        if(moveDescriptionInput.getText().toString().length() > 200) {
+            moveDescriptionInput.setError("Max length is 200");
             result = false;
         }
         if(moveStepsInput.getCount() == 0) {
@@ -232,11 +233,14 @@ public class EditMoveActivity extends ActionBarActivity {
         EditText moveNameInput = (EditText) findViewById(R.id.edit_name_title);
         EditText moveDescriptionInput = (EditText) findViewById(R.id.moveDescriptionTextView);
         Spinner movePositionInput = (Spinner) findViewById(R.id.editPositionSpinner);
+        Spinner moveTopBottomInput = (Spinner) findViewById(R.id.editTopBottomSpinner);
+        Spinner moveGiInput = (Spinner) findViewById(R.id.editGiSpinner);
 
-        newMove.setName(moveNameInput.getText().toString());
-        newMove.setDescription(moveDescriptionInput.getText().toString());
+        newMove.setName(moveNameInput.getText().toString().trim());
+        newMove.setDescription(moveDescriptionInput.getText().toString().trim());
         newMove.setPosition(Position.get(movePositionInput.getSelectedItem().toString()));
-        newMove.setTopBottom(TopBottom.TOP);
+        newMove.setTopBottom(TopBottom.get(moveTopBottomInput.getSelectedItem().toString()));
+        newMove.setGiNoGi(Gi.get(moveGiInput.getSelectedItem().toString()));
         for(String step: list_steps) {
             newMove.addStep(step);
         }
@@ -247,12 +251,44 @@ public class EditMoveActivity extends ActionBarActivity {
         EditText moveNameInput = (EditText) findViewById(R.id.edit_name_title);
         EditText moveDescriptionInput = (EditText) findViewById(R.id.moveDescriptionTextView);
         Spinner movePositionInput = (Spinner) findViewById(R.id.editPositionSpinner);
+        Spinner moveTopBottomInput = (Spinner) findViewById(R.id.editTopBottomSpinner);
+        Spinner moveGiInput = (Spinner) findViewById(R.id.editGiSpinner);
 
-        move.setName(moveNameInput.getText().toString());
-        move.setDescription(moveDescriptionInput.getText().toString());
+        move.setName(moveNameInput.getText().toString().trim());
+        move.setDescription(moveDescriptionInput.getText().toString().trim());
         move.setPosition(Position.get(movePositionInput.getSelectedItem().toString()));
+        move.setTopBottom(TopBottom.get(moveTopBottomInput.getSelectedItem().toString()));
+        move.setGiNoGi(Gi.get(moveGiInput.getSelectedItem().toString()));
     }
 
+    private void populateSpinners() {
+        ArrayList<String> positionValues = new ArrayList<String>();
+        for(Position position: Position.values()) {
+            positionValues.add(position.getValue());
+        }
+        Spinner positionSpinner = (Spinner)  findViewById(R.id.editPositionSpinner);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, positionValues);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        positionSpinner.setAdapter(adapter);
+
+        ArrayList<String> topBottomValues = new ArrayList<String>();
+        for(TopBottom topBottom: TopBottom.values()) {
+            topBottomValues.add(topBottom.getValue());
+        }
+        Spinner topBottomSpinner = (Spinner)  findViewById(R.id.editTopBottomSpinner);
+        ArrayAdapter adapterTopBottom = new ArrayAdapter(this, android.R.layout.simple_spinner_item, topBottomValues);
+        adapterTopBottom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        topBottomSpinner.setAdapter(adapterTopBottom);
+
+        ArrayList<String> giValues = new ArrayList<String>();
+        for(Gi gi: Gi.values()) {
+            giValues.add(gi.getValue());
+        }
+        Spinner giSpinner = (Spinner)  findViewById(R.id.editGiSpinner);
+        ArrayAdapter adapterGi = new ArrayAdapter(this, android.R.layout.simple_spinner_item, giValues);
+        adapterGi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        giSpinner.setAdapter(adapterGi);
+    }
 
 
     private void populateMoveDataIntoForm(String editMoveId) {
@@ -273,6 +309,22 @@ public class EditMoveActivity extends ActionBarActivity {
                 if(moveToEdit.getPosition().getValue().equals(
                         Position.values()[i].getValue())) {
                     movePositionInput.setSelection(i);
+                    break;
+                }
+            }
+            Spinner moveTopBottomInput = (Spinner) findViewById(R.id.editTopBottomSpinner);
+            for(int i = 0; i <= TopBottom.values().length; i++){
+                if(moveToEdit.getTopBottom().getValue().equals(
+                        TopBottom.values()[i].getValue())) {
+                    moveTopBottomInput.setSelection(i);
+                    break;
+                }
+            }
+            Spinner moveGiInput = (Spinner) findViewById(R.id.editGiSpinner);
+            for(int i = 0; i <= Gi.values().length; i++){
+                if(moveToEdit.getGiNoGi().getValue().equals(
+                        Gi.values()[i].getValue())) {
+                    moveGiInput.setSelection(i);
                     break;
                 }
             }

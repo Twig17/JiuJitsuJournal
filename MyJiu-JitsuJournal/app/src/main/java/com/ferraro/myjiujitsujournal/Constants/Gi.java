@@ -6,22 +6,21 @@ import java.util.Map;
 /**
  * Created by Nick on 3/6/2017.
  */
-public enum TopBottom {
-    TOP("Top"),
-    BOTTOM("Bottom"),
-    STANDING("Standing");
+public enum Gi {
+    GI("Gi"),
+    NOGI("NoGi");
 
     private String name;
 
-    private static final Map<String, TopBottom> lookup = new HashMap<String, TopBottom>();
+    private static final Map<String, Gi> lookup = new HashMap<String, Gi>();
 
     static {
-        for (TopBottom p : TopBottom.values()) {
+        for (Gi p : Gi.values()) {
             lookup.put(p.getValue(), p);
         }
     }
 
-    TopBottom(String name) {
+    Gi(String name) {
         this.name = name;
     }
 
@@ -29,7 +28,8 @@ public enum TopBottom {
         return name;
     }
 
-    public static TopBottom get(String name) {
+
+    public static Gi get(String name) {
         return lookup.get(name);
     }
 }
