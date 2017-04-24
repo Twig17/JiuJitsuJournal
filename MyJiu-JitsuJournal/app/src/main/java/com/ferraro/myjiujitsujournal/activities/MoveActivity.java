@@ -87,7 +87,7 @@ public class MoveActivity extends ActionBarActivity {
         }
 
         TextView moveGiText =(TextView)findViewById(R.id.moveGiText);
-        moveGiText.setText(moveGiText.getText() + thisMove.getGiNoGi().getValue());
+        moveGiText.setText(thisMove.getGiNoGi().getValue());
 
         TextView movePositionText =(TextView)findViewById(R.id.movePostionText);
         String positionDisplayString = "";

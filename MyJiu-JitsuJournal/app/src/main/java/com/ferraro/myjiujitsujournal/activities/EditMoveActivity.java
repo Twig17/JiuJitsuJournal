@@ -61,6 +61,7 @@ public class EditMoveActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int arg2, long arg3) {
+                createStepOnClickListener((String)arg0.getItemAtPosition(arg2));
             }
         });
 
@@ -130,7 +131,7 @@ public class EditMoveActivity extends ActionBarActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
-                                        String result = userInput.getText().toString();
+                                        String result = userInput.getText().toString().trim();
                                         if (!TextUtils.isEmpty(result)) {
                                             arrayAdapterSteps.add(result);
                                             listView.setSelection(arrayAdapterSteps.getCount() - 1);
@@ -156,6 +157,56 @@ public class EditMoveActivity extends ActionBarActivity {
 
             }
         });
+    }
+
+    private void createStepOnClickListener(final String step) {
+        // get prompts.xml view
+        LayoutInflater li = LayoutInflater.from(context);
+        View promptsView = li.inflate(R.layout.activity_popup_modify_step, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(promptsView);
+
+        final EditText userInput = (EditText) promptsView
+                .findViewById(R.id.edit_step_input_field);
+        userInput.setText(step);
+
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                // edit text
+                                String result = userInput.getText().toString().trim();
+                                if (!TextUtils.isEmpty(result)) {
+                                    int stepPosition = arrayAdapterSteps.getPosition(step);
+                                    arrayAdapterSteps.remove(step);
+                                    arrayAdapterSteps.insert(result, stepPosition);
+                                    listView.setSelection(stepPosition);
+                                }
+                                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                            }
+                        });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
     public void saveMove(View view) {

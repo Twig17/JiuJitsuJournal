@@ -40,17 +40,19 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button android:text="My\nJournal"
+            <Button android:text="\nJournal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:onClick="showMyJournal"
+                android:id="@+id/myJournalButton"
                 android:layout_weight="1"/>
 
-            <Button android:text="My\nGym"
+            <Button android:text="\nGym"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:id="@+id/myGymButton"
                 android:layout_weight="1"/>
 
             </LinearLayout>

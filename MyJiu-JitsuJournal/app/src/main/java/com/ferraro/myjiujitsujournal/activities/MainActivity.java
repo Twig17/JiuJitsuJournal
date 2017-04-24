@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ferraro.myjiujitsujournal.Constants.MyConstants;
@@ -31,6 +32,12 @@ public class MainActivity extends ActionBarActivity {
         String welcomeMessage = welcomeMessageText.getText().toString();
         welcomeMessage = thisUser.getUsername() + "'" + welcomeMessage;
         welcomeMessageText.setText(welcomeMessage);
+
+        Button myJournalButton =(Button)findViewById(R.id.myJournalButton);
+        myJournalButton.setText(thisUser.getUsername() + "'s" + myJournalButton.getText());
+
+        Button myGymButton =(Button)findViewById(R.id.myGymButton);
+        myGymButton.setText(thisUser.getUsername() + "'s"  +myGymButton.getText());
     }
 
     public void showDefaultJournal(View view) {
