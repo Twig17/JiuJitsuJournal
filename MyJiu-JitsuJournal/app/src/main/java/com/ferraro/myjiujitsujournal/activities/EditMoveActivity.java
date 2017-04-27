@@ -137,7 +137,6 @@ public class EditMoveActivity extends ActionBarActivity {
                                             listView.setSelection(arrayAdapterSteps.getCount() - 1);
                                         }
                                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                                     }
                                 })
                         .setNegativeButton("Cancel",
@@ -145,7 +144,6 @@ public class EditMoveActivity extends ActionBarActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                                     }
                                 });
 
@@ -190,7 +188,6 @@ public class EditMoveActivity extends ActionBarActivity {
                                     listView.setSelection(stepPosition);
                                 }
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                             }
                         })
                 .setNegativeButton("Cancel",
@@ -198,7 +195,6 @@ public class EditMoveActivity extends ActionBarActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                             }
                         });
 
