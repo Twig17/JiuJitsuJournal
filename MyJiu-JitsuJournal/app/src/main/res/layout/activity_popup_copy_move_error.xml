@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/copy_move_to_my_journal_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Move can not be copied.\nYou already have this move in your journal."
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <requestFocus />
+
+</LinearLayout>

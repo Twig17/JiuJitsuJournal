@@ -114,7 +114,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Copy To My Journal"
-            android:onClick="copyMoveToMyJournal"
+            android:onClick="checkCopyMoveToJournal"
             android:visibility="gone"
             android:layout_weight="1"
             android:id="@+id/copy_button"/>
