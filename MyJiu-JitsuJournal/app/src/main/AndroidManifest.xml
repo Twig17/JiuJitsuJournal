@@ -38,6 +38,10 @@
             android:name="com.ferraro.myjiujitsujournal.activities.EditMoveActivity"
             android:windowSoftInputMode="stateHidden|adjustPan|adjustResize" >
         </activity>
+        <activity
+            android:name="com.ferraro.myjiujitsujournal.activities.GymActivity"
+            android:label="@string/title_activity_gym" >
+        </activity>
     </application>
 
 </manifest>

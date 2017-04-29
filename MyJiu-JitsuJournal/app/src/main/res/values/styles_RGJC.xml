@@ -1,0 +1,13 @@
+<resources>
+
+    <style name="RGJCTheme"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">#f7040d</item>/>
+        <item name="android:background">#000000</item>/>
+        <item name="android:buttonStyle">@style/ButtonAppTheme</item>
+    </style>
+
+    <style name="ButtonAppTheme">
+        <item name="android:background">#0000FF</item>/>
+    </style>
+
+</resources>

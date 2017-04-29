@@ -5,58 +5,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:gravity="center" tools:context=".MainActivity">
+    tools:context="com.ferraro.myjiujitsujournal.activities.GymActivity">
 
-    <!-- Top section for title -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/title_layout"
+        android:id="@+id/gym_name_section"
         android:layout_weight="6"
         android:orientation="vertical">
 
-        <TextView android:text="@string/hello_world"
+        <TextView android:text="gym name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_weight="1"
-            android:id="@+id/welcome_message"/>
+            android:layout_weight="1"/>
     </LinearLayout>
 
-    <!-- Body section of activity -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_body"
         android:layout_weight="1"
+        android:id="@+id/gym_body_section"
         android:orientation="vertical">
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button android:text="\nJournal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:onClick="showMyJournal"
-                android:id="@+id/myJournalButton"
-                android:layout_weight="1"/>
-
-            <Button android:text="\nGym"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:id="@+id/myGymButton"
-                android:onClick="showGym"
-                android:layout_weight="1"/>
-
-            </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -65,16 +37,28 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Button android:text="Default\nJournal"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/scheduleView"
+                android:layout_gravity="right"
+                android:src="@drawable/rgjc_schedule" />
+            </LinearLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView android:text="gym name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="showDefaultJournal"
                 android:gravity="center"
                 android:layout_weight="1"/>
-
         </LinearLayout>
-
-
     </LinearLayout>
 
 </LinearLayout>

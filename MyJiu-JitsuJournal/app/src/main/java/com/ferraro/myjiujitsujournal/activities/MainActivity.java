@@ -54,6 +54,12 @@ public class MainActivity extends ActionBarActivity {
         startActivity(journalIntent);
     }
 
+    public void showGym(View view){
+        //TODO put if statement to show either your gym or a list of gyms
+        Intent gymIntent = new Intent(this, GymActivity.class);
+        startActivity(gymIntent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
