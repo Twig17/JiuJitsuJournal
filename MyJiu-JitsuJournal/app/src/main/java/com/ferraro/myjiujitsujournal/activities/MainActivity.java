@@ -57,6 +57,7 @@ public class MainActivity extends ActionBarActivity {
     public void showGym(View view){
         //TODO put if statement to show either your gym or a list of gyms
         Intent gymIntent = new Intent(this, GymActivity.class);
+        gymIntent.putExtra(MyConstants.GYM_ID_TO_DISPLAY, engine.getDatabase().getAllGym().get(0).getId());
         startActivity(gymIntent);
     }
 

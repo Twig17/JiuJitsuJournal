@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.ferraro.myjiujitsujournal.Constants.MyConstants;
+import com.ferraro.myjiujitsujournal.mjjj.Gym;
 import com.ferraro.myjiujitsujournal.mjjj.Journal;
 import com.ferraro.myjiujitsujournal.mjjj.MyApp;
 import com.ferraro.myjiujitsujournal.mjjj.User;
@@ -12,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 /**
  * Created by Nick on 3/5/2017.
@@ -80,5 +82,22 @@ public class SerializationDatabase extends Activity implements IDatabase{
         } catch(Exception e) {
             System.out.println(e);
         }
+    }
+
+    public Gym getGymById(String id){
+        return null;
+    }
+
+    public Gym getGymByName(String name){
+        for(Gym gym: CreateDefaultGyms.createGyms()){
+            if(gym.getName().equals(name)){
+                return gym;
+            }
+        }
+        return null;
+    }
+
+    public List<Gym> getAllGym() {
+        return CreateDefaultGyms.createGyms();
     }
 }

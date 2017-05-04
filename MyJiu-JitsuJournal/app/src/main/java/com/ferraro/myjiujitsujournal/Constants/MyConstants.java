@@ -12,4 +12,6 @@ public class MyConstants {
     public static String MOVE_TO_OPEN_ID = "moveToOpenId";
     public static String MOVE_TO_OPEN_NAME = "moveToOpenName";
     public static String MOVE_TO_OPEN_POSITION = "moveToOpenPosition";
+    public static String FILE_NAME_TO_VIEW = "fileNameToView";
+    public static String GYM_ID_TO_DISPLAY = "gymIdToDisplay";
 }

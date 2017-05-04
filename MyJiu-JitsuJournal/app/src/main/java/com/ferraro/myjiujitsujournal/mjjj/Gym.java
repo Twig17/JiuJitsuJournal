@@ -10,10 +10,10 @@ public class Gym implements Serializable{
 
     private String name;
     private String id;
-    private String scheduleImageName;
+    private int scheduleImageName;
     private String location;
     private Journal journal;
-    private String iconImageName;
+    private int iconImageName;
     private String theme;
 
     public Gym(String name) {
@@ -33,11 +33,11 @@ public class Gym implements Serializable{
         this.name = name;
     }
 
-    public String getScheduleImageName() {
+    public int getScheduleImageName() {
         return scheduleImageName;
     }
 
-    public void setScheduleImageName(String scheduleImageName) {
+    public void setScheduleImageName(int scheduleImageName) {
         this.scheduleImageName = scheduleImageName;
     }
 
@@ -49,11 +49,11 @@ public class Gym implements Serializable{
         this.location = location;
     }
 
-    public String getIconImageName() {
+    public int getIconImageName() {
         return iconImageName;
     }
 
-    public void setIconImageName(String iconImageName) {
+    public void setIconImageName(int iconImageName) {
         this.iconImageName = iconImageName;
     }
 
@@ -63,5 +63,21 @@ public class Gym implements Serializable{
 
     public void setTheme(String theme) {
         this.theme = theme;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Gym gym = (Gym) o;
+
+        return !(getId() != null ? !getId().equals(gym.getId()) : gym.getId() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId() != null ? getId().hashCode() : 0;
     }
 }
