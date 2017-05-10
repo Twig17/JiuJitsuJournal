@@ -27,6 +27,9 @@ public class GymActivity extends ActionBarActivity {
             return;
         }
         getDisplayGym(gymId);
+        if(thisGym == null) {
+            return;
+        }
 
         ImageView imageScheduleView =(ImageView)findViewById(R.id.scheduleView);
         imageScheduleView.setImageDrawable(getResources().getDrawable(thisGym.getScheduleImageName()));
