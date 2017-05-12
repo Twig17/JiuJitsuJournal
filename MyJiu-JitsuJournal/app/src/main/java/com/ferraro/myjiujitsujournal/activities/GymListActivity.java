@@ -1,5 +1,6 @@
 package com.ferraro.myjiujitsujournal.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
@@ -9,9 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.ferraro.myjiujitsujournal.Constants.MyConstants;
 import com.ferraro.myjiujitsujournal.helpers.CustomGymAdapter;
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
 import com.ferraro.myjiujitsujournal.mjjj.Gym;
@@ -24,8 +25,8 @@ public class GymListActivity extends ActionBarActivity {
 
     private Engine engine;
     private ListView list;
-    private List<LinearLayout> list_file;
     private CustomGymAdapter adapter;
+    private List<String> gymIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,6 @@ public class GymListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gym_list);
 
-        list_file = new ArrayList<LinearLayout>();
         list = (ListView)findViewById(R.id.allGymsListView);
         displayGyms();
 
@@ -62,13 +62,14 @@ public class GymListActivity extends ActionBarActivity {
     }
 
     private void displayGyms() {
-        list_file = new ArrayList<LinearLayout>();
         List<Gym> allGyms = engine.getDatabase().getAllGym();
         //loop through all moves in the journal and show a list of them
+        gymIds = new ArrayList<String>();
         List<String> gymNames = new ArrayList<String>();
         List<Integer> gymLogoIds = new ArrayList<Integer>();
         List<String> gymLocations = new ArrayList<String>();
         for(Gym gym: allGyms) {
+            gymIds.add(gym.getId());
             gymNames.add(gym.getName());
             gymLogoIds.add(gym.getIconImageName());
             gymLocations.add(gym.getLocation());
@@ -80,9 +81,9 @@ public class GymListActivity extends ActionBarActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View view, int arg2,long arg3)
+            public void onItemClick(AdapterView<?> arg0, View view, int position,long id)
             {
-
+                startGymActivity(position);
             }
         });
         EditText inputSearchGyms = (EditText) findViewById(R.id.gymSearchBar);
@@ -104,6 +105,12 @@ public class GymListActivity extends ActionBarActivity {
             public void afterTextChanged(Editable arg0) {
             }
         });
-
     }
+
+    private void startGymActivity(int position) {
+        Intent gymIntent = new Intent(this, GymActivity.class);
+        gymIntent.putExtra(MyConstants.GYM_ID_TO_DISPLAY, gymIds.get(position));
+        startActivity(gymIntent);
+    }
+
 }

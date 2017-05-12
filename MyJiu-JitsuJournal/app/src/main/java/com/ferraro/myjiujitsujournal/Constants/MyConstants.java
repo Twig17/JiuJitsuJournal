@@ -6,6 +6,7 @@ package com.ferraro.myjiujitsujournal.Constants;
 public class MyConstants {
     public static String user_file = "user_file";
     public static String journal_file = "journal_file";
+    public static String gyms_file = "gyms_file";
 
     public static String JOURNAL_TO_OPEN = "journalToOpen";
 

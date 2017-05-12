@@ -74,8 +74,8 @@ public class ImageViewerActivity extends ActionBarActivity {
                 float x = img.getScaleX();
                 float y = img.getScaleY();
 
-                img.setScaleX((float) (x+1));
-                img.setScaleY((float) (y+1));
+                img.setScaleX((float) (x+.5));
+                img.setScaleY((float) (y+.5));
             }
         });
 
@@ -89,8 +89,8 @@ public class ImageViewerActivity extends ActionBarActivity {
                 float x = img.getScaleX();
                 float y = img.getScaleY();
                 if(x > 1 && y > 1) {
-                    img.setScaleX((float) (x - 1));
-                    img.setScaleY((float) (y - 1));
+                    img.setScaleX((float) (x - .5));
+                    img.setScaleY((float) (y - .5));
                 }
             }
         });

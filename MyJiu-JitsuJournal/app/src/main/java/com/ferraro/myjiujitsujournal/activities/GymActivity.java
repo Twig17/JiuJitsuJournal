@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ferraro.myjiujitsujournal.Constants.MyConstants;
 import com.ferraro.myjiujitsujournal.mjjj.Engine;
@@ -30,6 +31,9 @@ public class GymActivity extends ActionBarActivity {
         if(thisGym == null) {
             return;
         }
+
+        TextView gymNameView =(TextView)findViewById(R.id.gymNameDisplay);
+        gymNameView.setText(thisGym.getName());
 
         ImageView imageScheduleView =(ImageView)findViewById(R.id.scheduleView);
         imageScheduleView.setImageDrawable(getResources().getDrawable(thisGym.getScheduleImageName()));

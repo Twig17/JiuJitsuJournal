@@ -84,10 +84,12 @@ public class SerializationDatabase extends Activity implements IDatabase{
         }
     }
 
+    @Override
     public Gym getGymById(String id){
         return null;
     }
 
+    @Override
     public Gym getGymByName(String name){
         for(Gym gym: CreateDefaultGyms.createGyms()){
             if(gym.getName().equals(name)){
@@ -97,7 +99,35 @@ public class SerializationDatabase extends Activity implements IDatabase{
         return null;
     }
 
+    @Override
     public List<Gym> getAllGym() {
-        return CreateDefaultGyms.createGyms();
+        //Only create gyms once so id's are not changing
+        try{
+            Context context = MyApp.getContext();
+            FileInputStream fis = context.openFileInput(MyConstants.gyms_file);
+            ObjectInputStream is = new ObjectInputStream(fis);
+            List<Gym> allGyms = (List<Gym>) is.readObject();
+            return allGyms;
+        }
+        catch(Exception e) {
+            //log error here
+            e.toString();
+        }
+        List<Gym> allGyms = CreateDefaultGyms.createGyms();
+        saveGyms(allGyms);
+        return allGyms;
+    }
+
+    public void saveGyms(List<Gym> allGyms) {
+        try {
+            Context context = MyApp.getContext();
+            FileOutputStream fos = context.openFileOutput(MyConstants.gyms_file, Context.MODE_PRIVATE);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(allGyms);
+            os.close();
+            fos.close();
+        } catch(Exception e) {
+            System.out.println(e);
+        }
     }
 }
