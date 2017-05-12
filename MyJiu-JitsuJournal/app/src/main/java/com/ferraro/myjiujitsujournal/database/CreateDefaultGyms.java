@@ -24,8 +24,12 @@ public class CreateDefaultGyms {
         Gym rgjcGym = new Gym("Renzo Gracie Jersey City");
         rgjcGym.setIconImageName(R.drawable.rgjc_icon);
         rgjcGym.setScheduleImageName(R.drawable.rgjc_schedule);
+        rgjcGym.setLocation("143 Columbus Drive, Floor 3, Jersey City, NJ 07302");
 
         Gym rgnyGym = new Gym("Renzo Gracie New York City");
+        rgnyGym.setIconImageName(R.drawable.rgny_icon);
+        rgnyGym.setScheduleImageName(R.drawable.rgny_schedule);
+        rgnyGym.setLocation("224 W 30th St, New York, NY 10001");
 
         allGyms.add(rgjcGym);
         allGyms.add(rgnyGym);

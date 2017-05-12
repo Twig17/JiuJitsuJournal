@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class User implements Serializable{
 
     private String username;
+    private Gym myGym;
 
     public User(String username) {
         this.username = username;
@@ -19,5 +20,13 @@ public class User implements Serializable{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Gym getMyGym() {
+        return myGym;
+    }
+
+    public void setMyGym(Gym myGym) {
+        this.myGym = myGym;
     }
 }

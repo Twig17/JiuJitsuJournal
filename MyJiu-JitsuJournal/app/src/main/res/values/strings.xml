@@ -19,4 +19,5 @@
     <string name="title_activity_edit_move">EditMoveActivity</string>
     <string name="title_activity_gym">GymActivity</string>
     <string name="title_activity_image_viewer">ImageViewer</string>
+    <string name="title_activity_gym_list">GymListActivity</string>
 </resources>

@@ -46,6 +46,10 @@
             android:name="com.ferraro.myjiujitsujournal.activities.ImageViewerActivity"
             android:label="@string/title_activity_image_viewer" >
         </activity>
+        <activity
+            android:name="com.ferraro.myjiujitsujournal.activities.GymListActivity"
+            android:label="@string/title_activity_gym_list" >
+        </activity>
     </application>
 
 </manifest>
